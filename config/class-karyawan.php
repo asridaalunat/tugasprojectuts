@@ -3,28 +3,27 @@
 // Memasukkan file konfigurasi database
 include_once 'db-config.php';
 
-class Mahasiswa extends Database {
+class Karyawan extends Database {
 
     // Method untuk input data mahasiswa
-    public function inputMahasiswa($data){
+    public function inputKaryawan($data){
         // Mengambil data dari parameter $data
-        $nim      = $data['nim'];
         $nama     = $data['nama'];
-        $prodi    = $data['prodi'];
+        $jabatan    = $data['jabatan'];
         $alamat   = $data['alamat'];
         $provinsi = $data['provinsi'];
         $email    = $data['email'];
         $telp     = $data['telp'];
         $status   = $data['status'];
         // Menyiapkan query SQL untuk insert data menggunakan prepared statement
-        $query = "INSERT INTO tb_mahasiswa (nim_mhs, nama_mhs, prodi_mhs, alamat, provinsi, email, telp, status_mhs) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO tb_karyawan (nama_karyawan, jabatan, alamat, provinsi, email, telp, status_karyawan) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
         // Mengecek apakah statement berhasil disiapkan
         if(!$stmt){
             return false;
         }
         // Memasukkan parameter ke statement
-        $stmt->bind_param("ssssssss", $nim, $nama, $prodi, $alamat, $provinsi, $email, $telp, $status);
+        $stmt->bind_param("sssssss", $nim, $nama, $jabatan, $alamat, $provinsi, $email, $telp, $status);
         $result = $stmt->execute();
         $stmt->close();
         // Mengembalikan hasil eksekusi query

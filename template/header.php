@@ -1,8 +1,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>SICMAS - Sistem Informasi CRUD Mahasiswa</title>
+<title>SAPDK - Sistem Aplikasi Pengelolaan Data Karyawan</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <meta name="color-scheme" content="light dark" />
-<meta name="theme-color" content="#007bff" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#06d053ff" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
 <meta name="supported-color-schemes" content="light dark" />
 <link rel="icon" href="assets/img/logo.png" type="image/png" />

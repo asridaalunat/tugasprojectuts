@@ -1,21 +1,21 @@
 <?php
 
-include_once 'config/class-mahasiswa.php';
-$mahasiswa = new Mahasiswa();
+include_once 'config/class-karyawan.php';
+$karyawan = new Karyawan();
 // Menampilkan alert berdasarkan status yang diterima melalui parameter GET
 if(isset($_GET['status'])){
 	// Mengecek nilai parameter GET 'status' dan menampilkan alert yang sesuai menggunakan JavaScript
 	if($_GET['status'] == 'inputsuccess'){
-		echo "<script>alert('Data mahasiswa berhasil ditambahkan.');</script>";
+		echo "<script>alert('Data karyawan berhasil ditambahkan.');</script>";
 	} else if($_GET['status'] == 'editsuccess'){
-		echo "<script>alert('Data mahasiswa berhasil diubah.');</script>";
+		echo "<script>alert('Data karyawan berhasil diubah.');</script>";
 	} else if($_GET['status'] == 'deletesuccess'){
-		echo "<script>alert('Data mahasiswa berhasil dihapus.');</script>";
+		echo "<script>alert('Data karyawan berhasil dihapus.');</script>";
 	} else if($_GET['status'] == 'deletefailed'){
-		echo "<script>alert('Gagal menghapus data mahasiswa. Silakan coba lagi.');</script>";
+		echo "<script>alert('Gagal menghapus data karyawan. Silakan coba lagi.');</script>";
 	}
 }
-$dataMahasiswa = $mahasiswa->getAllMahasiswa();
+$dataKaryawan = $karyawan->getAllKaryawan();
 
 ?>
 <!doctype html>
@@ -38,7 +38,7 @@ $dataMahasiswa = $mahasiswa->getAllMahasiswa();
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-6">
-								<h3 class="mb-0">Daftar Mahasiswa</h3>
+								<h3 class="mb-0">Daftar Karyawan</h3>
 							</div>
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-end">
@@ -56,7 +56,7 @@ $dataMahasiswa = $mahasiswa->getAllMahasiswa();
 							<div class="col-12">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="card-title">Tabel Mahasiswa</h3>
+										<h3 class="card-title">Tabel Karyawan</h3>
 										<div class="card-tools">
 											<button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
 												<i data-lte-icon="expand" class="bi bi-plus-lg"></i>
@@ -72,9 +72,8 @@ $dataMahasiswa = $mahasiswa->getAllMahasiswa();
 											<thead>
 												<tr>
 													<th>No</th>
-													<th>NIM</th>
 													<th>Nama</th>
-													<th>Prodi</th>
+													<th>Jabatan</th>
 													<th>Provinsi</th>
 													<th>Alamat</th>
 													<th>Telp</th>
@@ -85,34 +84,29 @@ $dataMahasiswa = $mahasiswa->getAllMahasiswa();
 											</thead>
 											<tbody>
 												<?php
-													if(count($dataMahasiswa) == 0){
+													if(count($dataKaryawan) == 0){
 													    echo '<tr class="align-middle">
-															<td colspan="10" class="text-center">Tidak ada data mahasiswa.</td>
+															<td colspan="10" class="text-center">Tidak ada data karyawan.</td>
 														</tr>';
 													} else {
-														foreach ($dataMahasiswa as $index => $mahasiswa){
-															if($mahasiswa['status'] == 1){
-															    $mahasiswa['status'] = '<span class="badge bg-success">Aktif</span>';
-															} elseif($mahasiswa['status'] == 2){
-															    $mahasiswa['status'] = '<span class="badge bg-danger">Tidak Aktif</span>';
-															} elseif($mahasiswa['status'] == 3){
-															    $mahasiswa['status'] = '<span class="badge bg-warning text-dark">Cuti</span>';
-															} elseif($mahasiswa['status'] == 4){
-															    $mahasiswa['status'] = '<span class="badge bg-primary">Lulus</span>';
-															} 
+														foreach ($dataKaryawan as $index => $karyawan){
+															if($karyawan['status'] == 1){
+															    $karyawan['status'] = '<span class="badge bg-success">Sudah Kawin</span>';
+															} elseif($karyawan['status'] == 2){
+															    $mahasiswa['status'] = '<span class="badge bg-danger">Belum Kawin</span>';
+															}
 															echo '<tr class="align-middle">
 																<td>'.($index + 1).'</td>
-																<td>'.$mahasiswa['nim'].'</td>
-																<td>'.$mahasiswa['nama'].'</td>
-																<td>'.$mahasiswa['prodi'].'</td>
-																<td>'.$mahasiswa['provinsi'].'</td>
-																<td>'.$mahasiswa['alamat'].'</td>
-																<td>'.$mahasiswa['telp'].'</td>
-																<td>'.$mahasiswa['email'].'</td>
-																<td class="text-center">'.$mahasiswa['status'].'</td>
+																<td>'.$karyawan['nama'].'</td>
+																<td>'.$karyawan['jabatan'].'</td>
+																<td>'.$karyawan['provinsi'].'</td>
+																<td>'.$karyawan['alamat'].'</td>
+																<td>'.$karyawan['telp'].'</td>
+																<td>'.$karyawan['email'].'</td>
+																<td class="text-center">'.$karyawan['status'].'</td>
 																<td class="text-center">
-																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'data-edit.php?id='.$mahasiswa['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
-																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data mahasiswa ini?\')){window.location.href=\'proses/proses-delete.php?id='.$mahasiswa['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
+																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'data-edit.php?id='.$karyawan['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
+																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data karyawan ini?\')){window.location.href=\'proses/proses-delete.php?id='.$karyawan['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
 																</td>
 															</tr>';
 														}
@@ -122,7 +116,7 @@ $dataMahasiswa = $mahasiswa->getAllMahasiswa();
 										</table>
 									</div>
 									<div class="card-footer">
-										<button type="button" class="btn btn-primary" onclick="window.location.href='data-input.php'"><i class="bi bi-plus-lg"></i> Tambah Mahasiswa</button>
+										<button type="button" class="btn btn-primary" onclick="window.location.href='data-input.php'"><i class="bi bi-plus-lg"></i> Tambah Karyawan</button>
 									</div>
 								</div>
 							</div>
