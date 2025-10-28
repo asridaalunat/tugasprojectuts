@@ -63,7 +63,7 @@ if(isset($_GET['search'])){
 									<div class="card-body">
 										<form action="data-search.php" method="GET">
 											<div class="mb-3">
-												<label for="search" class="form-label">Masukkan Nama Mahasiswa</label>
+												<label for="search" class="form-label">Masukkan Nama Karyawan</label>
 												<input type="text" class="form-control" id="search" name="search" placeholder="Cari berdasarkan Nama Karyawan" value="<?php echo $kataKunci; ?>" required>
 											</div>
 											<button type="submit" class="btn btn-primary"><i class="bi bi-search-heart-fill"></i> Cari</button>
@@ -88,15 +88,14 @@ if(isset($_GET['search'])){
 										// Mengecek apakah parameter GET 'search' ada
 										if(isset($_GET['search'])){
 											// Mengecek apakah ada data mahasiswa yang ditemukan
-											if(count($cariMahasiswa) > 0){
+											if(count($cariKaryawan) > 0){
 												// Menampilkan tabel hasil pencarian
 												echo '<table class="table table-striped" role="table">
 													<thead>
 														<tr>
 															<th>No</th>
-															<th>NIM</th>
 															<th>Nama</th>
-															<th>Prodi</th>
+															<th>Jabatan</th>
 															<th>Provinsi</th>
 															<th>Alamat</th>
 															<th>Telp</th>
@@ -107,31 +106,26 @@ if(isset($_GET['search'])){
 													</thead>
 													<tbody>';
 													// Iterasi data mahasiswa yang ditemukan dan menampilkannya dalam tabel
-													foreach ($cariMahasiswa as $index => $mahasiswa){
+													foreach ($cariKaryawan as $index => $karyawan){
 														// Mengubah status mahasiswa menjadi badge dengan warna yang sesuai
-														if($mahasiswa['status'] == 1){
-															$mahasiswa['status'] = '<span class="badge bg-success">Aktif</span>';
-														} elseif($mahasiswa['status'] == 2){
-															$mahasiswa['status'] = '<span class="badge bg-danger">Tidak Aktif</span>';
-														} elseif($mahasiswa['status'] == 3){
-															$mahasiswa['status'] = '<span class="badge bg-warning text-dark">Cuti</span>';
-														} elseif($mahasiswa['status'] == 4){
-															$mahasiswa['status'] = '<span class="badge bg-primary">Lulus</span>';
+														if($karyawan['status'] == 1){
+															$karyawan['status'] = '<span class="badge bg-success">Sudah Kawin</span>';
+														} elseif($karyawan['status'] == 2){
+															$karyawan['status'] = '<span class="badge bg-danger">Belum Kawin</span>';
 														} 
 														// Menampilkan baris data mahasiswa dalam tabel
 														echo '<tr class="align-middle">
 															<td>'.($index + 1).'</td>
-															<td>'.$mahasiswa['nim'].'</td>
-															<td>'.$mahasiswa['nama'].'</td>
-															<td>'.$mahasiswa['prodi'].'</td>
-															<td>'.$mahasiswa['provinsi'].'</td>
-															<td>'.$mahasiswa['alamat'].'</td>
-															<td>'.$mahasiswa['telp'].'</td>
-															<td>'.$mahasiswa['email'].'</td>
-															<td class="text-center">'.$mahasiswa['status'].'</td>
+															<td>'.$karyawan['nama'].'</td>
+															<td>'.$karyawan['jabatan'].'</td>
+															<td>'.$karyawan['provinsi'].'</td>
+															<td>'.$karyawan['alamat'].'</td>
+															<td>'.$karyawan['telp'].'</td>
+															<td>'.$karyawan['email'].'</td>
+															<td class="text-center">'.$karyawan['status'].'</td>
 															<td class="text-center">
-																<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'data-edit.php?id='.$mahasiswa['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
-																<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data mahasiswa ini?\')){window.location.href=\'proses/proses-delete.php?id='.$mahasiswa['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
+																<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'data-edit.php?id='.$karyawan['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
+																<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data karyawan ini?\')){window.location.href=\'proses/proses-delete.php?id='.$karyawan['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
 															</td>
 														</tr>';
 													}
@@ -140,13 +134,13 @@ if(isset($_GET['search'])){
 											} else {
 												// Menampilkan pesan jika tidak ada data mahasiswa yang ditemukan
 												echo '<div class="alert alert-warning" role="alert">
-														Tidak ditemukan data mahasiswa yang sesuai dengan kata kunci "<strong>'.htmlspecialchars($_GET['search']).'</strong>".
+														Tidak ditemukan data karyawan yang sesuai dengan kata kunci "<strong>'.htmlspecialchars($_GET['search']).'</strong>".
 													  </div>';
 											}
 										} else {
 											// Menampilkan pesan jika form pencarian belum disubmit
 											echo '<div class="alert alert-info" role="alert">
-													Silakan masukkan kata kunci pencarian di atas untuk mencari data mahasiswa.
+													Silakan masukkan kata kunci pencarian di atas untuk mencari data karyawan.
 												  </div>';
 										}
 										?>

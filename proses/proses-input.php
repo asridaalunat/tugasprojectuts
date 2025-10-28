@@ -3,7 +3,7 @@
 // Memasukkan file class-mahasiswa.php untuk mengakses class Mahasiswa
 include '../config/class-karyawan.php';
 // Membuat objek dari class Mahasiswa
-$karyawan = new Karyawan();
+$karyawan = new karyawan();
 // Mengambil data mahasiswa dari form input menggunakan metode POST dan menyimpannya dalam array
 $dataKaryawan = [
     'nama' => $_POST['nama'],

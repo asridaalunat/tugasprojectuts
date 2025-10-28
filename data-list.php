@@ -93,7 +93,7 @@ $dataKaryawan = $karyawan->getAllKaryawan();
 															if($karyawan['status'] == 1){
 															    $karyawan['status'] = '<span class="badge bg-success">Sudah Kawin</span>';
 															} elseif($karyawan['status'] == 2){
-															    $mahasiswa['status'] = '<span class="badge bg-danger">Belum Kawin</span>';
+															    $karyawan['status'] = '<span class="badge bg-danger">Belum Kawin</span>';
 															}
 															echo '<tr class="align-middle">
 																<td>'.($index + 1).'</td>

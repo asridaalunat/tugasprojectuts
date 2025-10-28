@@ -65,7 +65,7 @@ if(isset($_GET['status'])){
                                             <input type="hidden" name="id" value="<?php echo $dataProvinsi['id']; ?>">
 											<div class="mb-3">
 												<label for="nama" class="form-label">Nama Provinsi</label>
-												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Program Studi" value="<?php echo $dataProvinsi['nama']; ?>" required>
+												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Jabatan" value="<?php echo $dataProvinsi['nama']; ?>" required>
 											</div>
                                         </div>
 									    <div class="card-footer">

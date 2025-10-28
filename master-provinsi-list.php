@@ -88,7 +88,7 @@ $dataProvinsi = $master->getProvinsi();
 																<td>'.$provinsi['nama'].'</td>
 																<td class="text-center">
 																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'master-provinsi-edit.php?id='.$provinsi['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
-																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data program studi ini?\')){window.location.href=\'proses/proses-provinsi.php?aksi=deleteprovinsi&id='.$provinsi['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
+																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data jabatan ini?\')){window.location.href=\'proses/proses-provinsi.php?aksi=deleteprovinsi&id='.$provinsi['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
 																</td>
 															</tr>';
 														}
