@@ -54,7 +54,7 @@
 
 								<div class="card-body">
 									<p>Halo, user! SAPDK adalah singkatan dari Sistem Aplikasi Pengelolaan Data Karyawan. Aplikasi
-										ini dirancang untuk membantu mengelola informasi dasar karyawan CRUD (Create, Read, Update,
+										ini dirancang untuk membantu mengelola informasi dasar data karyawan CRUD (Create, Read, Update,
 										Delete) pada data Karyawan menggunakan PHP berbasis OOP. Dengan SAPDK, kamu
 										bisa: menambah data karyawan baru, melihat daftar karyawan, mengubah informasi
 										karyawan, dan menghapus data karyawan. Gunakan aplikasi ini dengan bijak, dan

@@ -67,6 +67,18 @@ if(isset($_GET['status'])){
 												<label for="nama" class="form-label">Nama Jabatan</label>
 												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Jabatan" required>
 											</div>
+											<div class="mb-3">
+											<label for="deskripsi" class="form-label">Deskripsi Jabatan</label>
+											<textarea class="form-control" id="deskripsi" name="deskripsi"
+												placeholder="Masukkan Deskripsi Jabatan"
+												required><?php echo $dataJabatan['deskripsi']; ?></textarea>
+										</div>
+										<div class="mb-3">
+											<label for="level_jabatan" class="form-label">Level Jabatan</label>
+											<input type="number" class="form-control" id="level_jabatan"
+												name="level_jabatan" placeholder="Masukkan Level Jabatan"
+												value="<?php echo $dataJabatan['level_jabatan']; ?>" required>
+										</div>
                                         </div>
 									    <div class="card-footer">
                                             <button type="button" class="btn btn-danger me-2 float-start" onclick="window.location.href='master-jabatan-list.php'">Batal</button>

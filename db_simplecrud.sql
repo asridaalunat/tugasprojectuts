@@ -42,12 +42,17 @@ CREATE TABLE IF NOT EXISTS `tb_jabatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table db_simplecrud.tb_prodi: ~9 rows (approximately)
-INSERT INTO `tb_jabatan` (`kode_jabatan`, `nama_jabatan`) VALUES
-	('ADM', 'Administrator'),
-	('MNG', 'Manager'),
-	('OP', 'Operator'),
-	('SUP', 'Supervisor'),
-	('STF', 'Staff'),
+  INSERT INTO `tb_jabatan` (`kode_jabatan`, ` nama_jabatan`, ` deskripsi`, ` level_jabatan`) VALUES
+('Mgr', 'Manager', 'Mengatur seluruh operasional perusahaan', 1),
+('Spv', 'Supervisor', 'Mengawasi pekerjaan staf di bawahnya', 2),
+('HRD', 'Human Resource Department', 'Mengelola data karyawan dan administrasi kepegawaian', 2),
+('Adm', 'Admin', 'Menginput dan mengelola data dalam sistem', 3),
+('Ksr', 'Kasir', 'Melakukan transaksi dan pencatatan keuangan', 3),
+('KDV', 'Kepala Divisi', 'Memimpin dan mengkoordinasi satu divisi', 2),
+('SKF', 'Staf Keuangan', 'Mengelola pencatatan dan laporan keuangan', 3),
+('SIT', 'Staf IT (Information Technology)', 'Menangani sistem aplikasi dan jaringan', 3),
+('Opr', 'Operator', 'Menjalankan tugas operasional harian', 4),
+('KYU', 'Karyawan Umum', 'Membantu tugas harian sesuai arahan', 4);
 
 -- Dumping structure for table db_simplecrud.tb_provinsi
 CREATE TABLE IF NOT EXISTS `tb_provinsi` (
@@ -64,9 +69,9 @@ INSERT INTO `tb_provinsi` (`id_provinsi`, `nama_provinsi`) VALUES
 	(4, 'Jawa Timur'),
 	(5, 'Jawa Tengah'),
 	(6, 'Jambi');
-  (6, 'Surabaya');
-  (6, 'Sulawesi');
-  (6, 'Malang');
+  (7, 'Surabaya');
+  (8, 'Sulawesi');
+  (9, 'Malang');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

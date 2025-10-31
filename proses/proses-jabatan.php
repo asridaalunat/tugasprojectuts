@@ -9,7 +9,9 @@ if($_GET['aksi'] == 'inputJabatan'){
     // Mengambil data prodi dari form input menggunakan metode POST dan menyimpannya dalam array
     $dataJabatan = [
         'kode' => $_POST['kode'],
-        'nama' => $_POST['nama']
+        'nama' => $_POST['nama'],
+        'deskripsi' => $_POST['deskripsi'],
+        'level_jabatan' => $_POST['level_jabatan']
     ];
     // Memanggil method inputProdi untuk memasukkan data prodi dengan parameter array $dataProdi
     $input = $master->inputJabatan($dataJabatan);
@@ -23,10 +25,11 @@ if($_GET['aksi'] == 'inputJabatan'){
 } elseif($_GET['aksi'] == 'updateJabatan'){
     // Mengambil data prodi dari form edit menggunakan metode POST dan menyimpannya dalam array
     $dataJabatan = [
-        'id' => $_POST['id'],
         'kode' => $_POST['kode'],
-        'nama' => $_POST['nama']
-    ];
+        'nama' => $_POST['nama'],
+        'deskripsi' => $_POST['deskripsi'],
+        'level_jabatan' => $_POST['level_jabatan']
+];
     // Memanggil method updateProdi untuk mengupdate data prodi dengan parameter array $dataProdi
     $update = $master->updateJabatan($dataJabatan);
     if($update){
