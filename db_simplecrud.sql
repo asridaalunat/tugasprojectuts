@@ -68,9 +68,9 @@ INSERT INTO `tb_provinsi` (`id_provinsi`, `nama_provinsi`) VALUES
 	(3, 'Nusa Tenggara Barat'),
 	(4, 'Jawa Timur'),
 	(5, 'Jawa Tengah'),
-	(6, 'Jambi');
-  (7, 'Surabaya');
-  (8, 'Sulawesi');
+	(6, 'Jambi'),
+  (7, 'Surabaya'),
+  (8, 'Sulawesi'),
   (9, 'Malang');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;

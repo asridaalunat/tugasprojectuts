@@ -1,7 +1,7 @@
 <?php
 
 include_once 'config/class-karyawan.php';
-$karyawan = new Karyawan();
+$karyawan = new karyawan();
 $kataKunci = '';
 // Mengecek apakah parameter GET 'search' ada
 if(isset($_GET['search'])){
@@ -94,6 +94,7 @@ if(isset($_GET['search'])){
 													<thead>
 														<tr>
 															<th>No</th>
+															<th>NIK</th>
 															<th>Nama</th>
 															<th>Jabatan</th>
 															<th>Provinsi</th>
@@ -109,13 +110,16 @@ if(isset($_GET['search'])){
 													foreach ($cariKaryawan as $index => $karyawan){
 														// Mengubah status mahasiswa menjadi badge dengan warna yang sesuai
 														if($karyawan['status'] == 1){
-															$karyawan['status'] = '<span class="badge bg-success">Sudah Kawin</span>';
+															$karyawan['status'] = '<span class="badge bg-success">Aktif</span>';
 														} elseif($karyawan['status'] == 2){
-															$karyawan['status'] = '<span class="badge bg-danger">Belum Kawin</span>';
+															$karyawan['status'] = '<span class="badge bg-danger">Tidak Aktif</span>';
+														} elseif($karyawan['status'] == 2){
+															$karyawan['status'] = '<span class="badge bg-danger">Cuti</span>';
 														} 
 														// Menampilkan baris data mahasiswa dalam tabel
 														echo '<tr class="align-middle">
 															<td>'.($index + 1).'</td>
+															<td>'.$karyawan['nik'].'</td>
 															<td>'.$karyawan['nama'].'</td>
 															<td>'.$karyawan['jabatan'].'</td>
 															<td>'.$karyawan['provinsi'].'</td>

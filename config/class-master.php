@@ -40,8 +40,9 @@ class MasterData extends Database {
     // Method untuk mendapatkan daftar status mahasiswa menggunakan array statis
     public function getStatus(){
         return [
-            ['id' => 1, 'nama' => 'Sudah Kawin'],
-            ['id' => 2, 'nama' => 'Belum Kawin'],
+            ['id' => 1, 'nama' => 'Aktif'],
+            ['id' => 2, 'nama' => 'Tidak Aktif'],
+            ['id' => 2, 'nama' => 'Cuti'],
         ];
     }
 
@@ -70,7 +71,7 @@ class MasterData extends Database {
         $stmt->bind_param("s", $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        $prodi = null;
+        $jabatan = null;
         if($result->num_rows > 0){
             $row = $result->fetch_assoc();
             $jabatan = [
@@ -86,7 +87,7 @@ class MasterData extends Database {
     public function updateJabatan($data){
         $kodeJabatan = $data['kode'];
         $namaJabatan = $data['nama'];
-        $query = "UPDATE tb_jabatan SET nama_Jabatan = ? WHERE kode_jabatan = ?";
+        $query = "UPDATE tb_jabatan SET nama_jabatan = ? WHERE kode_jabatan = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;

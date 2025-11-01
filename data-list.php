@@ -1,7 +1,7 @@
 <?php
 
 include_once 'config/class-karyawan.php';
-$karyawan = new Karyawan();
+$karyawan = new karyawan();
 // Menampilkan alert berdasarkan status yang diterima melalui parameter GET
 if(isset($_GET['status'])){
 	// Mengecek nilai parameter GET 'status' dan menampilkan alert yang sesuai menggunakan JavaScript
@@ -72,6 +72,7 @@ $dataKaryawan = $karyawan->getAllKaryawan();
 											<thead>
 												<tr>
 													<th>No</th>
+													<th>NIK</th>
 													<th>Nama</th>
 													<th>Jabatan</th>
 													<th>Provinsi</th>
@@ -91,12 +92,15 @@ $dataKaryawan = $karyawan->getAllKaryawan();
 													} else {
 														foreach ($dataKaryawan as $index => $karyawan){
 															if($karyawan['status'] == 1){
-															    $karyawan['status'] = '<span class="badge bg-success">Sudah Kawin</span>';
+															    $karyawan['status'] = '<span class="badge bg-success">Aktif</span>';
 															} elseif($karyawan['status'] == 2){
-															    $karyawan['status'] = '<span class="badge bg-danger">Belum Kawin</span>';
+															    $karyawan['status'] = '<span class="badge bg-danger">Tidak Aktif</span>';
+															} elseif($karyawan['status'] == 2){
+															    $karyawan['status'] = '<span class="badge bg-danger">Cuti</span>';
 															}
 															echo '<tr class="align-middle">
 																<td>'.($index + 1).'</td>
+																<td>'.$karyawan['nik'].'</td>
 																<td>'.$karyawan['nama'].'</td>
 																<td>'.$karyawan['jabatan'].'</td>
 																<td>'.$karyawan['provinsi'].'</td>
