@@ -9,9 +9,9 @@ class Karyawan extends Database
     {
         $nik = $data['nik'];
         $nama = $data['nama'];
-        $jabatan = $data['jabatan'];  // id/jabatan
+        $jabatan = $data['jabatan'];  // id jabatan
         $alamat = $data['alamat'];
-        $provinsi = $data['provinsi']; // id/provinsi
+        $provinsi = $data['provinsi']; // id provinsi
         $email = $data['email'];
         $telp = $data['telp'];
         $status = $data['status'];
@@ -26,22 +26,20 @@ class Karyawan extends Database
         return $result;
     }
 
-    // Ambil semua data karyawan
+    // Ambil semua data karyawan (hanya id jabatan & provinsi)
     public function getAllKaryawan()
     {
         $query = "SELECT 
-                    tb_karyawan.id_karyawan AS id,
-                    tb_karyawan.nik,
-                    tb_karyawan.nama_karyawan AS nama,
-                    tb_jabatan.nama AS jabatan,
-                    tb_provinsi.nama AS provinsi,
-                    tb_karyawan.alamat,
-                    tb_karyawan.email,
-                    tb_karyawan.telp,
-                    tb_karyawan.status_karyawan AS status
-                  FROM tb_karyawan
-                  LEFT JOIN tb_jabatan ON tb_karyawan.jabatan = tb_jabatan.kode
-                  LEFT JOIN tb_provinsi ON tb_karyawan.provinsi = tb_provinsi.kode";
+                    id_karyawan AS id,
+                    nik,
+                    nama_karyawan AS nama,
+                    jabatan,
+                    provinsi,
+                    alamat,
+                    email,
+                    telp,
+                    status_karyawan AS status
+                  FROM tb_karyawan";
         $result = $this->conn->query($query);
         $data = [];
         while ($row = $result->fetch_assoc()) {
@@ -54,19 +52,17 @@ class Karyawan extends Database
     public function getUpdateKaryawan($id)
     {
         $query = "SELECT 
-                    tb_karyawan.id_karyawan AS id,
-                    tb_karyawan.nik,
-                    tb_karyawan.nama_karyawan AS nama,
-                    tb_jabatan.nama AS jabatan,
-                    tb_provinsi.nama AS provinsi,
-                    tb_karyawan.alamat,
-                    tb_karyawan.email,
-                    tb_karyawan.telp,
-                    tb_karyawan.status_karyawan AS status
+                    id_karyawan AS id,
+                    nik,
+                    nama_karyawan AS nama,
+                    jabatan,
+                    provinsi,
+                    alamat,
+                    email,
+                    telp,
+                    status_karyawan AS status
                   FROM tb_karyawan
-                  LEFT JOIN tb_jabatan ON tb_karyawan.jabatan = tb_jabatan.kode
-                  LEFT JOIN tb_provinsi ON tb_karyawan.provinsi = tb_provinsi.kode
-                  WHERE tb_karyawan.id_karyawan = ?";
+                  WHERE id_karyawan = ?";
         $stmt = $this->conn->prepare($query);
         if (!$stmt) return false;
         $stmt->bind_param("i", $id);
@@ -83,9 +79,9 @@ class Karyawan extends Database
         $id = $data['id'];
         $nik = $data['nik'];
         $nama = $data['nama'];
-        $jabatan = $data['jabatan']; // id/jabatan
+        $jabatan = $data['jabatan']; // id jabatan
         $alamat = $data['alamat'];
-        $provinsi = $data['provinsi']; // id/provinsi
+        $provinsi = $data['provinsi']; // id provinsi
         $email = $data['email'];
         $telp = $data['telp'];
         $status = $data['status'];
@@ -118,19 +114,17 @@ class Karyawan extends Database
     {
         $likeQuery = "%" . $kataKunci . "%";
         $query = "SELECT 
-                    tb_karyawan.id_karyawan AS id,
-                    tb_karyawan.nik,
-                    tb_karyawan.nama_karyawan AS nama,
-                    tb_jabatan.nama AS jabatan,
-                    tb_provinsi.nama AS provinsi,
-                    tb_karyawan.alamat,
-                    tb_karyawan.email,
-                    tb_karyawan.telp,
-                    tb_karyawan.status_karyawan AS status
+                    id_karyawan AS id,
+                    nik,
+                    nama_karyawan AS nama,
+                    jabatan,
+                    provinsi,
+                    alamat,
+                    email,
+                    telp,
+                    status_karyawan AS status
                   FROM tb_karyawan
-                  LEFT JOIN tb_jabatan ON tb_karyawan.jabatan = tb_jabatan.kode
-                  LEFT JOIN tb_provinsi ON tb_karyawan.provinsi = tb_provinsi.kode
-                  WHERE tb_karyawan.nama_karyawan LIKE ? OR tb_karyawan.nik LIKE ?";
+                  WHERE nama_karyawan LIKE ? OR nik LIKE ?";
         $stmt = $this->conn->prepare($query);
         if (!$stmt) return [];
         $stmt->bind_param("ss", $likeQuery, $likeQuery);
