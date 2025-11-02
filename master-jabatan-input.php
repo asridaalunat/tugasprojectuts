@@ -60,7 +60,7 @@ if(isset($_GET['status'])){
                                     <form action="proses/proses-jabatan.php?aksi=inputjabatan" method="POST">
 									    <div class="card-body">
                                             <div class="mb-3">
-                                                <label for="nama" class="form-label">Kode</label>
+                                                <label for="kode" class="form-label">Kode</label>
                                                 <input type="text" class="form-control" id="kode" name="kode" placeholder="Masukkan Kode Jabatan" required>
                                             </div>
 											<div class="mb-3">
@@ -68,16 +68,14 @@ if(isset($_GET['status'])){
 												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Jabatan" required>
 											</div>
 											<div class="mb-3">
-                                            <label for="deskripsi" class="form-label">Deskripsi Jabatan</label>
-                                            <input type="text" class="form-control" id="deskripsi" name="deskripsi"
-                                                placeholder="Masukkan Deskripsi Jabatan" required>
-                                       
-										<div class="mb-3">
-											<label for="level_jabatan" class="form-label">Level Jabatan</label>
-											<input type="number" class="form-control" id="level_jabatan"
-												name="level_jabatan" placeholder="Masukkan Level Jabatan" required>
-										</div>
-                                        </div>
+                                                <label for="deskripsi" class="form-label">Deskripsi Jabatan</label>
+                                                <input type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Masukkan Deskripsi Jabatan" required>
+                                            </div>
+											<div class="mb-3">
+												<label for="level_jabatan" class="form-label">Level Jabatan</label>
+												<input type="number" class="form-control" id="level_jabatan" name="level_jabatan" placeholder="Masukkan Level Jabatan" required>
+											</div>
+									    </div>
 									    <div class="card-footer">
                                             <button type="button" class="btn btn-danger me-2 float-start" onclick="window.location.href='master-jabatan-list.php'">Batal</button>
                                             <button type="reset" class="btn btn-secondary me-2 float-start">Reset</button>

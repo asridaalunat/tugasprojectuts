@@ -66,29 +66,25 @@ if (isset($_GET['status'])) {
 								<form action="proses/proses-jabatan.php?aksi=updatejabatan" method="POST">
 									<div class="card-body">
 										<div class="mb-3">
-											<label for="nama" class="form-label">Kode Program</label>
+											<label for="nama" class="form-label">Kode</label>
 											<input type="text" class="form-control-plaintext" id="kode" name="kode"
-												placeholder="Masukkan Kode Jabatan"
-												value="<?php echo $dataJabatan['id']; ?>" required readonly>
+												placeholder="Masukkan Kode Jabatan" readonly>
 										</div>
 										<div class="mb-3">
 											<label for="nama" class="form-label">Nama Jabatan</label>
 											<input type="text" class="form-control" id="nama" name="nama"
-												placeholder="Masukkan Nama Jabatan"
-												value="<?php echo $dataJabatan['nama']; ?>" required>
+												placeholder="Masukkan Nama Jabatan" required>
 										</div>
 										<div class="mb-3">
 											<label for="deskripsi" class="form-label">Deskripsi Jabatan</label>
 											<textarea class="form-control" id="deskripsi" name="deskripsi"
-												placeholder="Masukkan Deskripsi Jabatan"
-												required><?php echo $dataJabatan['deskripsi']; ?></textarea>
+												placeholder="Masukkan Deskripsi Jabatan"required>
 										</div>
 
 										<div class="mb-3">
 											<label for="level_jabatan" class="form-label">Level Jabatan</label>
 											<input type="number" class="form-control" id="level_jabatan"
-												name="level_jabatan" placeholder="Masukkan Level Jabatan"
-												value="<?php echo $dataJabatan['level_jabatan']; ?>" required>
+												name="level_jabatan" placeholder="Masukkan Level Jabatan" required>
 										</div>
 
 									</div>

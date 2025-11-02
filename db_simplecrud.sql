@@ -22,6 +22,7 @@ USE `db_simplecrud`;
 -- Dumping structure for table db_simplecrud.tb_mahasiswa
 CREATE TABLE IF NOT EXISTS `tb_karyawan` (
   `id_karyawan` int(11) NOT NULL AUTO_INCREMENT,
+  `nik` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `nama_karyawan` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `jabatan` char(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `alamat` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -35,9 +36,11 @@ CREATE TABLE IF NOT EXISTS `tb_karyawan` (
 -- Dumping data for table db_simplecrud.tb_mahasiswa: ~0 rows (approximately)
 
 -- Dumping structure for table db_simplecrud.tb_prodi
-CREATE TABLE IF NOT EXISTS `tb_jabatan` (
-  `kode_jabatan` char(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama_jabatan` char(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  CREATE TABLE IF NOT EXISTS `tb_jabatan` (
+  `kode_jabatan` CHAR(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_jabatan` CHAR(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deskripsi` TEXT COLLATE utf8mb4_unicode_ci NULL,
+  `level_jabatan` INT(2) NOT NULL DEFAULT 1,
   PRIMARY KEY (`kode_jabatan`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
