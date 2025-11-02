@@ -1,13 +1,15 @@
 <?php
 
-// Silakan lihat komentar di file data-edit.php untuk penjelasan kode ini, karena struktur dan logikanya serupa.
+// File ini digunakan untuk mengedit data jabatan
 include_once 'config/class-master.php';
 $master = new MasterData();
-$dataJabatan = $master->getUpdateJabatan($_GET['id']);
-if (isset($_GET['status'])) {
-	if ($_GET['status'] == 'failed') {
-		echo "<script>alert('Gagal mengubah data jabatan. Silakan coba lagi.');</script>";
-	}
+
+// Ambil data jabatan berdasarkan ID
+$dataJabatan = $master->getUpdateJabatan($_GET['id_jabatan'] ?? $_GET['id'] ?? null);
+
+// Cek status jika ada pesan gagal
+if (isset($_GET['status']) && $_GET['status'] == 'failed') {
+	echo "<script>alert('Gagal mengubah data jabatan. Silakan coba lagi.');</script>";
 }
 
 ?>
@@ -23,7 +25,6 @@ if (isset($_GET['status'])) {
 	<div class="app-wrapper">
 
 		<?php include 'template/navbar.php'; ?>
-
 		<?php include 'template/sidebar.php'; ?>
 
 		<main class="app-main">
@@ -52,48 +53,58 @@ if (isset($_GET['status'])) {
 								<div class="card-header">
 									<h3 class="card-title">Formulir Jabatan</h3>
 									<div class="card-tools">
-										<button type="button" class="btn btn-tool" data-lte-toggle="card-collapse"
-											title="Collapse">
+										<button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
 											<i data-lte-icon="expand" class="bi bi-plus-lg"></i>
 											<i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
 										</button>
-										<button type="button" class="btn btn-tool" data-lte-toggle="card-remove"
-											title="Remove">
+										<button type="button" class="btn btn-tool" data-lte-toggle="card-remove" title="Remove">
 											<i class="bi bi-x-lg"></i>
 										</button>
 									</div>
 								</div>
+
 								<form action="proses/proses-jabatan.php?aksi=updatejabatan" method="POST">
 									<div class="card-body">
+
+										<!-- ID Jabatan disembunyikan -->
+										<input type="hidden" name="id_jabatan" value="<?php echo htmlspecialchars($dataJabatan['id_jabatan'] ?? ''); ?>">
+
 										<div class="mb-3">
-											<label for="nama" class="form-label">Kode</label>
-											<input type="text" class="form-control-plaintext" id="kode" name="kode"
-												placeholder="Masukkan Kode Jabatan" readonly>
+											<label for="kode" class="form-label">Kode Jabatan</label>
+											<input type="text" class="form-control" id="kode" name="kode"
+												value="<?php echo htmlspecialchars($dataJabatan['kode'] ?? ''); ?>"
+												placeholder="Masukkan Kode Jabatan" required>
 										</div>
+
 										<div class="mb-3">
-											<label for="nama" class="form-label">Nama Jabatan</label>
-											<input type="text" class="form-control" id="nama" name="nama"
+											<label for="nama_jabatan" class="form-label">Nama Jabatan</label>
+											<input type="text" class="form-control" id="nama_jabatan" name="nama_jabatan"
+												value="<?php echo htmlspecialchars($dataJabatan['nama_jabatan'] ?? ''); ?>"
 												placeholder="Masukkan Nama Jabatan" required>
 										</div>
+
 										<div class="mb-3">
 											<label for="deskripsi" class="form-label">Deskripsi Jabatan</label>
-											<textarea class="form-control" id="deskripsi" name="deskripsi"
-												placeholder="Masukkan Deskripsi Jabatan"required>
+											<textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"
+												placeholder="Masukkan Deskripsi Jabatan" required><?php echo htmlspecialchars($dataJabatan['deskripsi'] ?? ''); ?></textarea>
 										</div>
 
 										<div class="mb-3">
 											<label for="level_jabatan" class="form-label">Level Jabatan</label>
-											<input type="number" class="form-control" id="level_jabatan"
-												name="level_jabatan" placeholder="Masukkan Level Jabatan" required>
+											<input type="number" class="form-control" id="level_jabatan" name="level_jabatan"
+												value="<?php echo htmlspecialchars($dataJabatan['level_jabatan'] ?? ''); ?>"
+												placeholder="Masukkan Level Jabatan" required>
 										</div>
 
 									</div>
+
 									<div class="card-footer">
 										<button type="button" class="btn btn-danger me-2 float-start"
 											onclick="window.location.href='master-jabatan-list.php'">Batal</button>
 										<button type="submit" class="btn btn-warning float-end">Update Data</button>
 									</div>
 								</form>
+
 							</div>
 						</div>
 					</div>
@@ -103,7 +114,6 @@ if (isset($_GET['status'])) {
 		</main>
 
 		<?php include 'template/footer.php'; ?>
-
 	</div>
 
 	<?php include 'template/script.php'; ?>

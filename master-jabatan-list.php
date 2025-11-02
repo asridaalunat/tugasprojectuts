@@ -89,15 +89,52 @@ $dataJabatan = $master->getJabatan();
 														</tr>';
 											} else {
 												foreach ($dataJabatan as $index => $jabatan) {
+
+													// ---------- SAFEGUARD: cari id & nama yang tersedia ----------
+													// beberapa varian key yang mungkin ada: 'id', 'id_jabatan', 'kode', 'kode_jabatan'
+													$idValue = '';
+													if (isset($jabatan['id'])) {
+														$idValue = $jabatan['id'];
+													} elseif (isset($jabatan['id_jabatan'])) {
+														$idValue = $jabatan['id_jabatan'];
+													} elseif (isset($jabatan['kode'])) {
+														$idValue = $jabatan['kode'];
+													} elseif (isset($jabatan['kode_jabatan'])) {
+														$idValue = $jabatan['kode_jabatan'];
+													}
+
+													// beberapa varian nama yang mungkin ada: 'nama', 'nama_jabatan'
+													$namaValue = '';
+													if (isset($jabatan['nama'])) {
+														$namaValue = $jabatan['nama'];
+													} elseif (isset($jabatan['nama_jabatan'])) {
+														$namaValue = $jabatan['nama_jabatan'];
+													}
+
+													// Ambil kode untuk tampil di kolom "Kode" (fallback kosong jika tidak ada)
+													$kodeValue = isset($jabatan['kode']) ? $jabatan['kode'] : (isset($jabatan['kode_jabatan']) ? $jabatan['kode_jabatan'] : '');
+
+													// Ambil deskripsi dan level dengan fallback aman
+													$deskripsiValue = isset($jabatan['deskripsi']) ? $jabatan['deskripsi'] : '';
+													$levelValue = isset($jabatan['level_jabatan']) ? $jabatan['level_jabatan'] : (isset($jabatan['level']) ? $jabatan['level'] : '');
+
+													// Sanitasi output (jika null, htmlspecialchars akan menerima empty string)
+													$no = ($index + 1);
+													$kodeEsc = htmlspecialchars((string)$kodeValue ?? '');
+													$namaEsc = htmlspecialchars((string)$namaValue ?? '');
+													$descEsc = htmlspecialchars((string)$deskripsiValue ?? '');
+													$levelEsc = htmlspecialchars((string)$levelValue ?? '');
+													$idUrl = urlencode((string)$idValue);
+
 													echo '<tr class="align-middle">
-																<td>' . ($index + 1) . '</td>
-																<td>' . $jabatan['kode'] . '</td>
-																<td>' . $jabatan['nama'] . '</td>
-																<td>' . $jabatan['deskripsi'] . '</td>
-																<td>' . $jabatan['level_jabatan'] . '</td>
+																<td>' . $no . '</td>
+																<td>' . $kodeEsc . '</td>
+																<td>' . $namaEsc . '</td>
+																<td>' . $descEsc . '</td>
+																<td>' . $levelEsc . '</td>
 																<td class="text-center">
-																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'master-jabatan-edit.php?id=' . $jabatan['id'] . '\'"><i class="bi bi-pencil-fill"></i> Edit</button>
-																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data jabatan ini?\')){window.location.href=\'proses/proses-jabatan.php?aksi=deletejabatan&id=' . $jabatan['id'] . '\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
+																	<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'master-jabatan-edit.php?id=' . $idUrl . '\'"><i class="bi bi-pencil-fill"></i> Edit</button>
+																	<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data jabatan ini?\')){window.location.href=\'proses/proses-jabatan.php?aksi=deletejabatan&id=' . $idUrl . '\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
 																</td>
 															</tr>';
 												}

@@ -61,7 +61,7 @@
 										karyawan. Aplikasi ini fleksibel dan dapat dikembangkan lebih lanjut sesuai
 										kebutuhan.
 									</p>
-									<p>Silakan klik salah satu tombol di bawah untuk memulai perjalananmu</p>
+									<p>Silakan klik salah satu tombol di bawah untuk memulai</p>
 									<a href="data-input.php" class="btn btn-primary btn-lg"><i
 											class="bi bi-clipboard-data-fill"></i> Input Data Karyawan</a>
 									<a href="data-list.php" class="btn btn-success btn-lg"><i

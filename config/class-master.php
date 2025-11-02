@@ -13,10 +13,11 @@ class MasterData extends Database {
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $jabatan[] = [
-                    'id' => $row['kode_jabatan'],
+                    'id' => $row['id_jabatan'],
+                    'kode' => $row['kode_jabatan'],
                     'nama' => $row['nama_jabatan'],
-                    'deskripsi' => $row['deskripsi'],           // ditambahkan
-                    'level_jabatan' => $row['level_jabatan']    // ditambahkan
+                    'deskripsi' => $row['deskripsi'],           
+                    'level_jabatan' => $row['level_jabatan']    
                 ];
             }
         }
@@ -54,7 +55,6 @@ class MasterData extends Database {
         $namaJabatan = $data['nama'];
         $deskripsi = isset($data['deskripsi']) ? $data['deskripsi'] : '';
         $levelJabatan = isset($data['level_jabatan']) ? $data['level_jabatan'] : '';
-
         $query = "INSERT INTO tb_jabatan (kode_jabatan, nama_jabatan, deskripsi, level_jabatan) VALUES (?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
@@ -80,10 +80,10 @@ class MasterData extends Database {
         if($result->num_rows > 0){
             $row = $result->fetch_assoc();
             $jabatan = [
-                'id' => $row['kode_jabatan'],
+                'kode' => $row['kode_jabatan'],
                 'nama' => $row['nama_jabatan'],
-                'deskripsi' => $row['deskripsi'],           // ditambahkan
-                'level_jabatan' => $row['level_jabatan']    // ditambahkan
+                'deskripsi' => $row['deskripsi'],           
+                'level_jabatan' => $row['level_jabatan']    
             ];
         }
         $stmt->close();
@@ -94,8 +94,8 @@ class MasterData extends Database {
     public function updateJabatan($data){
         $kodeJabatan   = $data['kode'];
         $namaJabatan   = $data['nama'];
-        $deskripsi     = $data['deskripsi'];                  // ditambahkan
-        $levelJabatan  = $data['level_jabatan'];             // ditambahkan
+        $deskripsi     = $data['deskripsi'];                 
+        $levelJabatan  = $data['level_jabatan'];             
 
         $query = "UPDATE tb_jabatan SET nama_jabatan = ?, deskripsi = ?, level_jabatan = ? WHERE kode_jabatan = ?";
         $stmt = $this->conn->prepare($query);

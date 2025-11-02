@@ -1,30 +1,34 @@
 <?php
 
-// Memasukkan file class-mahasiswa.php untuk mengakses class Mahasiswa
+// Memasukkan file class-karyawan.php untuk mengakses class Karyawan
 include_once '../config/class-karyawan.php';
-// Membuat objek dari class Mahasiswa
+
+// Membuat objek dari class Karyawan
 $karyawan = new Karyawan();
-// Mengambil data mahasiswa dari form edit menggunakan metode POST dan menyimpannya dalam array
+
+// Mengambil data karyawan dari form edit menggunakan metode POST dan menyimpannya dalam array
 $dataKaryawan = [
-    'id' => $_POST['id'],
-    'nik' => $_POST['nik'],
-    'nama' => $_POST['nama'],
-    'jabatan' => $_POST['jabatan'],
-    'alamat' => $_POST['alamat'],
-    'provinsi' => $_POST['provinsi'],
-    'email' => $_POST['email'],
-    'telp' => $_POST['telp'],
-    'status' => $_POST['status'],
+    'id'             => $_POST['id'],
+    'nik'            => $_POST['nik'],
+    'nama'           => $_POST['nama'],
+    'nama_jabatan'   => $_POST['jabatan'],      // disesuaikan: jabatan → nama_jabatan
+    'alamat'         => $_POST['alamat'],
+    'nama_provinsi'  => $_POST['provinsi'],     // disesuaikan: provinsi → nama_provinsi
+    'email'          => $_POST['email'],
+    'telp'           => $_POST['telp'],
+    'status'         => $_POST['status'],
 ];
-// Memanggil method editMahasiswa untuk mengupdate data mahasiswa dengan parameter array $dataMahasiswa
+
+// Memanggil method editKaryawan untuk mengupdate data karyawan dengan parameter array $dataKaryawan
 $edit = $karyawan->editKaryawan($dataKaryawan);
+
 // Mengecek apakah proses edit berhasil atau tidak - true/false
-if($edit){
+if ($edit) {
     // Jika berhasil, redirect ke halaman data-list.php dengan status editsuccess
     header("Location: ../data-list.php?status=editsuccess");
 } else {
-    // Jika gagal, redirect ke halaman data-edit.php dengan status failed dan membawa id mahasiswa
-    header("Location: ../data-edit.php?id=".$dataKaryawan['id']."&status=failed");
+    // Jika gagal, redirect ke halaman data-edit.php dengan status failed dan membawa id karyawan
+    header("Location: ../data-edit.php?id=" . $dataKaryawan['id'] . "&status=failed");
 }
 
 ?>

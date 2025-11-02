@@ -1,7 +1,7 @@
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
     <div class="sidebar-brand">
         <a href="index.php" class="brand-link">
-            <img src="assets/img/logo.png" alt="AdminLTE Logo" class="brand-image opacity-75 shadow" />
+            <img src="assets/img/Logo.png" alt="AdminLTE Logo" class="brand-image opacity-75 shadow" />
             <span class="brand-text fw-light">SAPDK-CRUD</span>
         </a>
     </div>
@@ -36,7 +36,7 @@
                 </li>
                 <li class="nav-header">MASTER DATA</li>
                 <li class="nav-item">
-                    <a href="master-prodi-list.php" class="nav-link">
+                    <a href="master-jabatan-list.php" class="nav-link">
                         <i class="nav-icon bi bi-building"></i>
                         <p>Jabatan</p>
                     </a>

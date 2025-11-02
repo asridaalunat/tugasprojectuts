@@ -78,14 +78,12 @@ if (isset($_GET['status'])) {
                                             <label for="nik" class="form-label">NIK</label>
                                             <input type="text" class="form-control" id="nik" name="nik"
                                                 placeholder="Masukkan NIK Karyawan Sesuai dengan KTP Anda" required
-                                                value="<?php echo $dataKaryawan['nik']; ?>">
                                         </div>
 
                                         <div class="mb-3">
                                             <label for="nama" class="form-label">Nama Lengkap</label>
                                             <input type="text" class="form-control" id="nama" name="nama"
                                                 placeholder="Masukkan Nama Karyawan" required
-                                                value="<?php echo $dataKaryawan['nama']; ?>">
                                         </div>
 
                                         <div class="mb-3">
