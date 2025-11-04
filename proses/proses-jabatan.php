@@ -10,12 +10,12 @@ $master = new MasterData();
 if (isset($_GET['aksi'])) {
 
     // Aksi: Input Jabatan
-    if ($_GET['aksi'] == 'inputJabatan') {
+    if ($_GET['aksi'] == 'inputjabatan') {
 
         // Pastikan semua data POST tersedia
         $dataJabatan = [
-            'kode'          => $_POST['kode_jabatan'] ?? '',
-            'nama'          => $_POST['nama_jabatan'] ?? '',
+            'kode'          => $_POST['kode'] ?? '',
+            'nama'          => $_POST['nama'] ?? '',
             'deskripsi'     => $_POST['deskripsi'] ?? '',
             'level_jabatan' => $_POST['level_jabatan'] ?? ''
         ];

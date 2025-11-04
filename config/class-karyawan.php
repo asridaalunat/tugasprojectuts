@@ -9,9 +9,9 @@ class Karyawan extends Database
     {
         $nik = $data['nik'];
         $nama = $data['nama'];
-        $jabatan = $data['jabatan'];  // id jabatan
+        $jabatan = $data['jabatan'];  
         $alamat = $data['alamat'];
-        $provinsi = $data['provinsi']; // id provinsi
+        $provinsi = $data['provinsi']; 
         $email = $data['email'];
         $telp = $data['telp'];
         $status = $data['status'];
@@ -79,9 +79,9 @@ class Karyawan extends Database
         $id = $data['id'];
         $nik = $data['nik'];
         $nama = $data['nama'];
-        $jabatan = $data['jabatan']; // id jabatan
+        $jabatan = $data['jabatan']; 
         $alamat = $data['alamat'];
-        $provinsi = $data['provinsi']; // id provinsi
+        $provinsi = $data['provinsi']; 
         $email = $data['email'];
         $telp = $data['telp'];
         $status = $data['status'];
