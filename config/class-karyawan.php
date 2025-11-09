@@ -7,26 +7,26 @@ class Karyawan extends Database
     // Input karyawan
     public function inputKaryawan($data)
     {
-        $nik = $data['nik'];
-        $nama = $data['nama'];
-        $jabatan = $data['jabatan'];  
-        $alamat = $data['alamat'];
-        $provinsi = $data['provinsi']; 
-        $email = $data['email'];
-        $telp = $data['telp'];
-        $status = $data['status'];
+        $nik       = $data['nik'];
+        $nama      = $data['nama'];
+        $jabatan   = $data['jabatan'];  
+        $alamat    = $data['alamat'];
+        $kategori  = $data['kategori']; 
+        $email     = $data['email'];
+        $telp      = $data['telp'];
+        $status    = $data['status'];
 
-        $query = "INSERT INTO tb_karyawan (nik, nama_karyawan, jabatan, alamat, provinsi, email, telp, status_karyawan) 
+        $query = "INSERT INTO tb_karyawan (nik, nama_karyawan, jabatan, alamat, kategori, email, telp, status_karyawan) 
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
         if (!$stmt) return false;
-        $stmt->bind_param("ssssssss", $nik, $nama, $jabatan, $alamat, $provinsi, $email, $telp, $status);
+        $stmt->bind_param("ssssssss", $nik, $nama, $jabatan, $alamat, $kategori, $email, $telp, $status);
         $result = $stmt->execute();
         $stmt->close();
         return $result;
     }
 
-    // Ambil semua data karyawan (hanya id jabatan & provinsi)
+    // Ambil semua data karyawan
     public function getAllKaryawan()
     {
         $query = "SELECT 
@@ -34,7 +34,7 @@ class Karyawan extends Database
                     nik,
                     nama_karyawan AS nama,
                     jabatan,
-                    provinsi,
+                    kategori,
                     alamat,
                     email,
                     telp,
@@ -56,7 +56,7 @@ class Karyawan extends Database
                     nik,
                     nama_karyawan AS nama,
                     jabatan,
-                    provinsi,
+                    kategori,
                     alamat,
                     email,
                     telp,
@@ -76,22 +76,22 @@ class Karyawan extends Database
     // Edit karyawan
     public function editKaryawan($data)
     {
-        $id = $data['id'];
-        $nik = $data['nik'];
-        $nama = $data['nama'];
-        $jabatan = $data['jabatan']; 
-        $alamat = $data['alamat'];
-        $provinsi = $data['provinsi']; 
-        $email = $data['email'];
-        $telp = $data['telp'];
-        $status = $data['status'];
+        $id        = $data['id'];
+        $nik       = $data['nik'];
+        $nama      = $data['nama'];
+        $jabatan   = $data['jabatan']; 
+        $alamat    = $data['alamat'];
+        $kategori  = $data['kategori']; 
+        $email     = $data['email'];
+        $telp      = $data['telp'];
+        $status    = $data['status'];
 
         $query = "UPDATE tb_karyawan SET 
-                    nik = ?, nama_karyawan = ?, jabatan = ?, alamat = ?, provinsi = ?, email = ?, telp = ?, status_karyawan = ?
+                    nik = ?, nama_karyawan = ?, jabatan = ?, alamat = ?, kategori = ?, email = ?, telp = ?, status_karyawan = ?
                   WHERE id_karyawan = ?";
         $stmt = $this->conn->prepare($query);
         if (!$stmt) return false;
-        $stmt->bind_param("ssssssssi", $nik, $nama, $jabatan, $alamat, $provinsi, $email, $telp, $status, $id);
+        $stmt->bind_param("ssssssssi", $nik, $nama, $jabatan, $alamat, $kategori, $email, $telp, $status, $id);
         $result = $stmt->execute();
         $stmt->close();
         return $result;
@@ -118,7 +118,7 @@ class Karyawan extends Database
                     nik,
                     nama_karyawan AS nama,
                     jabatan,
-                    provinsi,
+                    kategori,
                     alamat,
                     email,
                     telp,

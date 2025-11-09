@@ -12,7 +12,7 @@ $dataKaryawan = [
     'nama'     => $_POST['nama'] ?? '',
     'jabatan'  => $_POST['jabatan'] ?? '',
     'alamat'   => $_POST['alamat'] ?? '',
-    'provinsi' => $_POST['provinsi'] ?? '',
+    'kategori' => $_POST['kategori'] ?? '',   // tetap ada
     'email'    => $_POST['email'] ?? '',
     'telp'     => $_POST['telp'] ?? '',
     'status'   => $_POST['status'] ?? ''
@@ -23,10 +23,8 @@ $input = $karyawan->inputKaryawan($dataKaryawan);
 
 // Mengecek apakah proses input berhasil atau tidak
 if ($input) {
-    // Jika berhasil, redirect ke halaman data-list.php dengan status inputsuccess
     header("Location: ../data-list.php?status=inputsuccess");
 } else {
-    // Jika gagal, redirect ke halaman data-input.php dengan status failed
     header("Location: ../data-input.php?status=failed");
 }
 

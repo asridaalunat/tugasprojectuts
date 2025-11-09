@@ -5,9 +5,9 @@ include_once 'config/class-karyawan.php';
 $master = new MasterData();
 $karyawan = new karyawan();
 
-// Mengambil daftar jabatan, provinsi, dan status karyawan
+// Mengambil daftar jabatan, kategori, dan status karyawan
 $jabatanList = $master->getJabatan();
-$provinsiList = $master->getProvinsi();
+$kategoriList = $master->getKategori(); // ganti provinsi menjadi kategori
 $statusList = $master->getStatus();
 
 // Mengambil data karyawan yang akan diedit berdasarkan id dari parameter GET
@@ -78,12 +78,14 @@ if (isset($_GET['status'])) {
                                             <label for="nik" class="form-label">NIK</label>
                                             <input type="text" class="form-control" id="nik" name="nik"
                                                 placeholder="Masukkan NIK Karyawan Sesuai dengan KTP Anda" required
+                                                value="<?php echo $dataKaryawan['nik']; ?>">
                                         </div>
 
                                         <div class="mb-3">
                                             <label for="nama" class="form-label">Nama Lengkap</label>
                                             <input type="text" class="form-control" id="nama" name="nama"
                                                 placeholder="Masukkan Nama Karyawan" required
+                                                value="<?php echo $dataKaryawan['nama']; ?>">
                                         </div>
 
                                         <div class="mb-3">
@@ -91,12 +93,8 @@ if (isset($_GET['status'])) {
                                             <select class="form-select" id="jabatan" name="jabatan" required>
                                                 <option value="" selected disabled>Pilih Jabatan</option>
                                                 <?php
-                                                // Iterasi daftar jabatan dan menandai yang sesuai dengan data karyawan
                                                 foreach ($jabatanList as $jabatan) {
-                                                    $selectedJabatan = "";
-                                                    if ($dataKaryawan['jabatan'] == $jabatan['id']) {
-                                                        $selectedJabatan = "selected";
-                                                    }
+                                                    $selectedJabatan = ($dataKaryawan['jabatan'] == $jabatan['id']) ? "selected" : "";
                                                     echo '<option value="' . $jabatan['id'] . '" ' . $selectedJabatan . '>' . $jabatan['nama'] . '</option>';
                                                 }
                                                 ?>
@@ -106,21 +104,18 @@ if (isset($_GET['status'])) {
                                         <div class="mb-3">
                                             <label for="alamat" class="form-label">Alamat</label>
                                             <input type="text" class="form-control" id="alamat" name="alamat"
-                                                placeholder="Masukkan Alamat Karyawan Sesuai KTP Anda" required
+                                                placeholder="Masukkan Alamat Karyawan" required
                                                 value="<?php echo $dataKaryawan['alamat']; ?>">
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="provinsi" class="form-label">Provinsi</label>
-                                            <select class="form-select" id="provinsi" name="provinsi" required>
-                                                <option value="" selected disabled>Pilih Provinsi</option>
+                                            <label for="kategori" class="form-label">Kategori</label>
+                                            <select class="form-select" id="kategori" name="kategori" required>
+                                                <option value="" selected disabled>Pilih Kategori</option>
                                                 <?php
-                                                foreach ($provinsiList as $provinsi) {
-                                                    $selectedProvinsi = "";
-                                                    if ($dataKaryawan['provinsi'] == $provinsi['id']) {
-                                                        $selectedProvinsi = "selected";
-                                                    }
-                                                    echo '<option value="' . $provinsi['id'] . '" ' . $selectedProvinsi . '>' . $provinsi['nama'] . '</option>';
+                                                foreach ($kategoriList as $kategori) {
+                                                    $selectedKategori = ($dataKaryawan['provinsi'] == $kategori['id']) ? "selected" : "";
+                                                    echo '<option value="' . $kategori['id'] . '" ' . $selectedKategori . '>' . $kategori['nama'] . '</option>';
                                                 }
                                                 ?>
                                             </select>
@@ -146,10 +141,7 @@ if (isset($_GET['status'])) {
                                                 <option value="" selected disabled>Pilih Status</option>
                                                 <?php
                                                 foreach ($statusList as $status) {
-                                                    $selectedStatus = "";
-                                                    if ($dataKaryawan['status'] == $status['id']) {
-                                                        $selectedStatus = "selected";
-                                                    }
+                                                    $selectedStatus = ($dataKaryawan['status'] == $status['id']) ? "selected" : "";
                                                     echo '<option value="' . $status['id'] . '" ' . $selectedStatus . '>' . $status['nama'] . '</option>';
                                                 }
                                                 ?>

@@ -2,15 +2,12 @@
 
 include_once 'config/class-master.php';
 $master = new MasterData();
-// Mengambil daftar program studi, provinsi, dan status mahasiswa
+// Mengambil daftar jabatan, kategori, dan status karyawan
 $jabatanList = $master->getJabatan();
-// Mengambil daftar provinsi
-$provinsiList = $master->getProvinsi();
-// Mengambil daftar status mahasiswa
+$kategoriList = $master->getKategori(); // ganti dari getProvinsi()
 $statusList = $master->getStatus();
-// Menampilkan alert berdasarkan status yang diterima melalui parameter GET
+
 if (isset($_GET['status'])) {
-    // Mengecek nilai parameter GET 'status' dan menampilkan alert yang sesuai menggunakan JavaScript
     if ($_GET['status'] == 'failed') {
         echo "<script>alert('Gagal menambahkan data karyawan. Silakan coba lagi.');</script>";
     }
@@ -23,12 +20,11 @@ if (isset($_GET['status'])) {
     <?php include 'template/header.php'; ?>
 </head>
 
-<body class="layout-fixed fixed-header fixed-footer sidebar-expand-lg sidebar-open bg-body-tertiary">
+<body class="layout-fixed fixed-header fixed-footer sidebar-expand-lg sidebar-open bg-body-tertiary input-page">
 
     <div class="app-wrapper">
 
         <?php include 'template/navbar.php'; ?>
-
         <?php include 'template/sidebar.php'; ?>
 
         <main class="app-main">
@@ -85,7 +81,6 @@ if (isset($_GET['status'])) {
                                             <select class="form-select" id="jabatan" name="jabatan" required>
                                                 <option value="" selected disabled>Pilih Jabatan</option>
                                                 <?php
-                                                // Iterasi daftar program studi dan menampilkannya sebagai opsi dalam dropdown
                                                 foreach ($jabatanList as $jabatan) {
                                                     echo '<option value="' . $jabatan['id'] . '">' . $jabatan['nama'] . '</option>';
                                                 }
@@ -98,13 +93,12 @@ if (isset($_GET['status'])) {
                                                 placeholder="Masukkan Alamat Lengkap Sesuai KTP" required></textarea>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="provinsi" class="form-label">Provinsi</label>
-                                            <select class="form-select" id="provinsi" name="provinsi" required>
-                                                <option value="" selected disabled>Pilih Provinsi</option>
+                                            <label for="kategori" class="form-label">Kategori</label>
+                                            <select class="form-select" id="kategori" name="kategori" required>
+                                                <option value="" selected disabled>Pilih Kategori</option>
                                                 <?php
-                                                // Iterasi daftar provinsi dan menampilkannya sebagai opsi dalam dropdown
-                                                foreach ($provinsiList as $provinsi) {
-                                                    echo '<option value="' . $provinsi['id'] . '">' . $provinsi['nama'] . '</option>';
+                                                foreach ($kategoriList as $kategori) {
+                                                    echo '<option value="' . $kategori['id'] . '">' . $kategori['nama'] . '</option>';
                                                 }
                                                 ?>
                                             </select>
@@ -125,7 +119,6 @@ if (isset($_GET['status'])) {
                                             <select class="form-select" id="status" name="status" required>
                                                 <option value="" selected disabled>Pilih Status</option>
                                                 <?php
-                                                // Iterasi daftar status mahasiswa dan menampilkannya sebagai opsi dalam dropdown
                                                 foreach ($statusList as $status) {
                                                     echo '<option value="' . $status['id'] . '">' . $status['nama'] . '</option>';
                                                 }

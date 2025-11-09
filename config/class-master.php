@@ -24,20 +24,20 @@ class MasterData extends Database {
         return $jabatan;
     }
 
-    // Method untuk mendapatkan daftar provinsi
-    public function getProvinsi(){
-        $query = "SELECT * FROM tb_provinsi";
+    // Method untuk mendapatkan daftar kategori (sebelumnya provinsi)
+    public function getKategori(){
+        $query = "SELECT * FROM tb_kategori";
         $result = $this->conn->query($query);
-        $provinsi = [];
+        $kategori = [];
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                $provinsi[] = [
-                    'id' => $row['id_provinsi'],
-                    'nama' => $row['nama_provinsi']
+                $kategori[] = [
+                    'id' => $row['id_kategori'],
+                    'nama' => $row['nama_kategori']
                 ];
             }
         }
-        return $provinsi;
+        return $kategori;
     }
 
     // Method untuk mendapatkan daftar status mahasiswa menggunakan array statis
@@ -121,23 +121,23 @@ class MasterData extends Database {
         return $result;
     }
 
-    // Method untuk input data provinsi
-    public function inputProvinsi($data){
-        $namaProvinsi = $data['nama'];
-        $query = "INSERT INTO tb_provinsi (nama_provinsi) VALUES (?)";
+    // Method untuk input data kategori (sebelumnya provinsi)
+    public function inputKategori($data){
+        $namaKategori = $data['nama'];
+        $query = "INSERT INTO tb_kategori (nama_kategori) VALUES (?)";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
         }
-        $stmt->bind_param("s", $namaProvinsi);
+        $stmt->bind_param("s", $namaKategori);
         $result = $stmt->execute();
         $stmt->close();
         return $result;
     }
 
-    // Method untuk mendapatkan data provinsi berdasarkan id
-    public function getUpdateProvinsi($id){
-        $query = "SELECT * FROM tb_provinsi WHERE id_provinsi = ?";
+    // Method untuk mendapatkan data kategori berdasarkan id
+    public function getUpdateKategori($id){
+        $query = "SELECT * FROM tb_kategori WHERE id_kategori = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
@@ -145,36 +145,36 @@ class MasterData extends Database {
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        $provinsi = null;
+        $kategori = null;
         if($result->num_rows > 0){
             $row = $result->fetch_assoc();
-            $provinsi = [
-                'id' => $row['id_provinsi'],
-                'nama' => $row['nama_provinsi']
+            $kategori = [
+                'id' => $row['id_kategori'],
+                'nama' => $row['nama_kategori']
             ];
         }
         $stmt->close();
-        return $provinsi;
+        return $kategori;
     }
 
-    // Method untuk mengedit data provinsi
-    public function updateProvinsi($data){
-        $idProvinsi = $data['id'];
-        $namaProvinsi = $data['nama'];
-        $query = "UPDATE tb_provinsi SET nama_provinsi = ? WHERE id_provinsi = ?";
+    // Method untuk mengedit data kategori
+    public function updateKategori($data){
+        $idKategori = $data['id'];
+        $namaKategori = $data['nama'];
+        $query = "UPDATE tb_kategori SET nama_kategori = ? WHERE id_kategori = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
         }
-        $stmt->bind_param("si", $namaProvinsi, $idProvinsi);
+        $stmt->bind_param("si", $namaKategori, $idKategori);
         $result = $stmt->execute();
         $stmt->close();
         return $result;
     }
 
-    // Method untuk menghapus data provinsi
-    public function deleteProvinsi($id){
-        $query = "DELETE FROM tb_provinsi WHERE id_provinsi = ?";
+    // Method untuk menghapus data kategori
+    public function deleteKategori($id){
+        $query = "DELETE FROM tb_kategori WHERE id_kategori = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
@@ -185,5 +185,21 @@ class MasterData extends Database {
         return $result;
     }
 
+    /* ======================================================
+       TAMBAHAN BARU UNTUK FUNGSI JABATAN BERDASARKAN ID
+       ====================================================== */
+    public function getJabatanById($id){
+        $query = "SELECT * FROM tb_jabatan WHERE id_jabatan = ?";
+        $stmt = $this->conn->prepare($query);
+        if(!$stmt){
+            return false;
+        }
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $jabatan = $result->fetch_assoc();
+        $stmt->close();
+        return $jabatan;
+    }
 }
 ?>

@@ -1,51 +1,39 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               5.7.33 - MySQL Community Server (GPL)
--- Server OS:                    Win64
--- HeidiSQL Version:             12.10.0.7000
+-- Database: db_simplecrud
 -- --------------------------------------------------------
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-
--- Dumping database structure for db_simplecrud
 CREATE DATABASE IF NOT EXISTS `db_simplecrud` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 USE `db_simplecrud`;
 
--- Dumping structure for table db_simplecrud.tb_mahasiswa
+-- --------------------------------------------------------
+-- Tabel: tb_karyawan (tanpa kolom provinsi)
+-- --------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tb_karyawan` (
-  `id_karyawan` int(11) NOT NULL AUTO_INCREMENT,
-  `nik` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `nama_karyawan` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `jabatan` char(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alamat` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `provinsi` mediumint(3) NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `telp` char(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `status_karyawan` tinyint(1) NOT NULL,
+  `id_karyawan` INT(11) NOT NULL AUTO_INCREMENT,
+  `nik` VARCHAR(20) NOT NULL DEFAULT '',
+  `nama_karyawan` VARCHAR(200) NOT NULL DEFAULT '',
+  `jabatan` CHAR(10) NOT NULL DEFAULT '',
+  `alamat` TEXT NOT NULL,
+  `kategori` MEDIUMINT(3) NOT NULL,
+  `email` VARCHAR(100) DEFAULT NULL,
+  `telp` CHAR(20) NOT NULL DEFAULT '',
+  `status_karyawan` TINYINT(1) NOT NULL,
   PRIMARY KEY (`id_karyawan`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table db_simplecrud.tb_mahasiswa: ~0 rows (approximately)
-
--- Dumping structure for table db_simplecrud.tb_prodi
-  CREATE TABLE IF NOT EXISTS `tb_jabatan` (
-  `kode_jabatan` CHAR(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama_jabatan` CHAR(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `deskripsi` TEXT COLLATE utf8mb4_unicode_ci NULL,
+-- --------------------------------------------------------
+-- Tabel: tb_jabatan
+-- --------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tb_jabatan` (
+  `kode_jabatan` CHAR(10) NOT NULL,
+  `nama_jabatan` CHAR(100) NOT NULL,
+  `deskripsi` TEXT NULL,
   `level_jabatan` INT(2) NOT NULL DEFAULT 1,
   PRIMARY KEY (`kode_jabatan`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table db_simplecrud.tb_prodi: ~9 rows (approximately)
-  INSERT INTO `tb_jabatan` (`kode_jabatan`, ` nama_jabatan`, ` deskripsi`, ` level_jabatan`) VALUES
+-- Data dummy tb_jabatan
+INSERT INTO `tb_jabatan` (`kode_jabatan`, `nama_jabatan`, `deskripsi`, `level_jabatan`) VALUES
 ('Mgr', 'Manager', 'Mengatur seluruh operasional perusahaan', 1),
 ('Spv', 'Supervisor', 'Mengawasi pekerjaan staf di bawahnya', 2),
 ('HRD', 'Human Resource Department', 'Mengelola data karyawan dan administrasi kepegawaian', 2),
@@ -57,27 +45,23 @@ CREATE TABLE IF NOT EXISTS `tb_karyawan` (
 ('Opr', 'Operator', 'Menjalankan tugas operasional harian', 4),
 ('KYU', 'Karyawan Umum', 'Membantu tugas harian sesuai arahan', 4);
 
--- Dumping structure for table db_simplecrud.tb_provinsi
-CREATE TABLE IF NOT EXISTS `tb_provinsi` (
-  `id_provinsi` smallint(3) NOT NULL AUTO_INCREMENT,
-  `nama_provinsi` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id_provinsi`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- --------------------------------------------------------
+-- Tabel: tb_kategori
+-- --------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tb_kategori` (
+  `id_kategori` SMALLINT(3) NOT NULL AUTO_INCREMENT,
+  `nama_kategori` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id_kategori`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table db_simplecrud.tb_provinsi: ~6 rows (approximately)
-INSERT INTO `tb_provinsi` (`id_provinsi`, `nama_provinsi`) VALUES
-	(1, 'Bali'),
-	(2, 'Nusa Tenggara Timur'),
-	(3, 'Nusa Tenggara Barat'),
-	(4, 'Jawa Timur'),
-	(5, 'Jawa Tengah'),
-	(6, 'Jambi'),
-  (7, 'Surabaya'),
-  (8, 'Sulawesi'),
-  (9, 'Malang');
-
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+-- Data dummy tb_kategori
+INSERT INTO `tb_kategori` (`id_kategori`, `nama_kategori`) VALUES
+(1, 'IT'),
+(2, 'Administrasi'),
+(3, 'Keuangan'),
+(4, 'Produksi'),
+(5, 'Marketing'),
+(6, 'Customer Service'),
+(7, 'Support'),
+(8, 'R&D'),
+(9, 'HR');

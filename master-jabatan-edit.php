@@ -1,123 +1,85 @@
 <?php
-
-// File ini digunakan untuk mengedit data jabatan
 include_once 'config/class-master.php';
 $master = new MasterData();
 
-// Ambil data jabatan berdasarkan ID
-$dataJabatan = $master->getUpdateJabatan($_GET['id_jabatan'] ?? $_GET['id'] ?? null);
+$id = $_GET['id'] ?? '';
+$data = $master->getJabatanById($id);
 
-// Cek status jika ada pesan gagal
-if (isset($_GET['status']) && $_GET['status'] == 'failed') {
-	echo "<script>alert('Gagal mengubah data jabatan. Silakan coba lagi.');</script>";
+if (!$data) {
+    echo "<script>alert('Data jabatan tidak ditemukan!');window.location='master-jabatan-list.php';</script>";
+    exit;
 }
-
 ?>
 <!doctype html>
 <html lang="en">
-
 <head>
-	<?php include 'template/header.php'; ?>
+    <?php include 'template/header.php'; ?>
 </head>
+<body class="layout-fixed fixed-header fixed-footer sidebar-expand-lg sidebar-open bg-body-tertiary input-page">
+    <div class="app-wrapper">
 
-<body class="layout-fixed fixed-header fixed-footer sidebar-expand-lg sidebar-open bg-body-tertiary">
+        <?php include 'template/navbar.php'; ?>
+        <?php include 'template/sidebar.php'; ?>
 
-	<div class="app-wrapper">
+        <main class="app-main">
+            <div class="app-content-header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6"><h3 class="mb-0">Edit Jabatan</h3></div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-end">
+                                <li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Edit Jabatan</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-		<?php include 'template/navbar.php'; ?>
-		<?php include 'template/sidebar.php'; ?>
+            <div class="app-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header"><h3 class="card-title">Form Edit Jabatan</h3></div>
+                                <form action="proses/proses-jabatan.php?aksi=editjabatan" method="POST">
+                                    <div class="card-body">
+                                        <input type="hidden" name="id" value="<?= htmlspecialchars($data['id_jabatan'] ?? $data['id'] ?? '') ?>">
 
-		<main class="app-main">
+                                        <div class="mb-3">
+                                            <label for="kode" class="form-label">Kode</label>
+                                            <input type="text" class="form-control" id="kode" name="kode" value="<?= htmlspecialchars($data['kode'] ?? $data['kode_jabatan'] ?? '') ?>" required>
+                                        </div>
 
-			<div class="app-content-header">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-sm-6">
-							<h3 class="mb-0">Edit Jabatan</h3>
-						</div>
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-end">
-								<li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Edit Jabatan</li>
-							</ol>
-						</div>
-					</div>
-				</div>
-			</div>
+                                        <div class="mb-3">
+                                            <label for="nama" class="form-label">Nama Jabatan</label>
+                                            <input type="text" class="form-control" id="nama" name="nama" value="<?= htmlspecialchars($data['nama'] ?? $data['nama_jabatan'] ?? '') ?>" required>
+                                        </div>
 
-			<div class="app-content">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-12">
-							<div class="card">
-								<div class="card-header">
-									<h3 class="card-title">Formulir Jabatan</h3>
-									<div class="card-tools">
-										<button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
-											<i data-lte-icon="expand" class="bi bi-plus-lg"></i>
-											<i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
-										</button>
-										<button type="button" class="btn btn-tool" data-lte-toggle="card-remove" title="Remove">
-											<i class="bi bi-x-lg"></i>
-										</button>
-									</div>
-								</div>
+                                        <div class="mb-3">
+                                            <label for="deskripsi" class="form-label">Deskripsi</label>
+                                            <input type="text" class="form-control" id="deskripsi" name="deskripsi" value="<?= htmlspecialchars($data['deskripsi'] ?? '') ?>" required>
+                                        </div>
 
-								<form action="proses/proses-jabatan.php?aksi=updatejabatan" method="POST">
-									<div class="card-body">
+                                        <div class="mb-3">
+                                            <label for="level_jabatan" class="form-label">Level Jabatan</label>
+                                            <input type="number" class="form-control" id="level_jabatan" name="level_jabatan" value="<?= htmlspecialchars($data['level_jabatan'] ?? $data['level'] ?? '') ?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="button" class="btn btn-danger me-2 float-start" onclick="window.location.href='master-jabatan-list.php'">Batal</button>
+                                        <button type="submit" class="btn btn-primary float-end">Simpan Perubahan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
-										<!-- ID Jabatan disembunyikan -->
-										<input type="hidden" name="id_jabatan" value="<?php echo htmlspecialchars($dataJabatan['id_jabatan'] ?? ''); ?>">
-
-										<div class="mb-3">
-											<label for="kode" class="form-label">Kode Jabatan</label>
-											<input type="text" class="form-control" id="kode" name="kode"
-												value="<?php echo htmlspecialchars($dataJabatan['kode'] ?? ''); ?>"
-												placeholder="Masukkan Kode Jabatan" required>
-										</div>
-
-										<div class="mb-3">
-											<label for="nama_jabatan" class="form-label">Nama Jabatan</label>
-											<input type="text" class="form-control" id="nama_jabatan" name="nama_jabatan"
-												value="<?php echo htmlspecialchars($dataJabatan['nama_jabatan'] ?? ''); ?>"
-												placeholder="Masukkan Nama Jabatan" required>
-										</div>
-
-										<div class="mb-3">
-											<label for="deskripsi" class="form-label">Deskripsi Jabatan</label>
-											<textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"
-												placeholder="Masukkan Deskripsi Jabatan" required><?php echo htmlspecialchars($dataJabatan['deskripsi'] ?? ''); ?></textarea>
-										</div>
-
-										<div class="mb-3">
-											<label for="level_jabatan" class="form-label">Level Jabatan</label>
-											<input type="number" class="form-control" id="level_jabatan" name="level_jabatan"
-												value="<?php echo htmlspecialchars($dataJabatan['level_jabatan'] ?? ''); ?>"
-												placeholder="Masukkan Level Jabatan" required>
-										</div>
-
-									</div>
-
-									<div class="card-footer">
-										<button type="button" class="btn btn-danger me-2 float-start"
-											onclick="window.location.href='master-jabatan-list.php'">Batal</button>
-										<button type="submit" class="btn btn-warning float-end">Update Data</button>
-									</div>
-								</form>
-
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</main>
-
-		<?php include 'template/footer.php'; ?>
-	</div>
-
-	<?php include 'template/script.php'; ?>
-
+        <?php include 'template/footer.php'; ?>
+    </div>
+    <?php include 'template/script.php'; ?>
 </body>
-
 </html>

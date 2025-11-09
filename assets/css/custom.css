@@ -1,1 +1,110 @@
 /* Taruh CSS Custom Disini */
+/* ===========================
+   STYLE UNTUK HALAMAN INPUT KARYAWAN
+   =========================== */
+
+/* Warna background halaman khusus input */
+body.input-page {
+    background-color: #e8f5e9 !important; /* hijau muda */
+}
+
+/* Warna card form */
+.input-page .card {
+    border: 1px solid #28a745;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+}
+
+/* Warna header card */
+.input-page .card-header {
+    background-color: #28a745 !important; /* hijau tua */
+    color: white !important;
+}
+
+/* Warna tombol submit */
+.input-page .btn-primary {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+.input-page .btn-primary:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+/* Warna tombol reset */
+.input-page .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+.input-page .btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Warna tombol batal */
+.input-page .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+.input-page .btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Ubah warna label */
+.input-page .form-label {
+    color: #2e7d32;
+    font-weight: 500;
+}
+
+/* ===========================
+   STYLE UNTUK HALAMAN DAFTAR KARYAWAN
+   =========================== */
+body.list-page {
+    background-color: #e3f2fd !important; /* biru muda */
+}
+
+.list-page .card {
+    border: 1px solid #2196f3;
+    box-shadow: 0 0 10px rgba(33, 150, 243, 0.3);
+}
+
+.list-page .card-header {
+    background-color: #2196f3 !important; /* biru tua */
+    color: rgb(167, 43, 43) !important;
+}
+
+.list-page .btn-primary {
+    background-color: #2196f3;
+    border-color: #2196f3;
+}
+.list-page .btn-primary:hover {
+    background-color: #1976d2;
+    border-color: #1565c0;
+}
+
+
+/* ===========================
+   STYLE UNTUK HALAMAN CARI KARYAWAN
+   =========================== */
+body.search-page {
+    background-color: #fff8e1 !important; /* kuning lembut */
+}
+
+#search-page .card {
+    border: 1px solid #ffc107;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+}
+
+#search-page .card-header {
+    background-color: #ffc107 !important; /* kuning tua */
+    color: #212121 !important;
+}
+
+#search-page .btn-primary {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212121;
+}
+#search-page .btn-primary:hover {
+    background-color: #ffb300;
+    border-color: #ffa000;
+    color: white;
+}
