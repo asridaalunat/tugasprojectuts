@@ -75,7 +75,6 @@ $dataKaryawan = $karyawan->getAllKaryawan();
                                                 <th>No</th>
                                                 <th>NIK</th>
                                                 <th>Nama</th>
-                                                <th>Jabatan</th>
                                                 <th>Kategori</th>
                                                 <th>Alamat</th>
                                                 <th>Telp</th>
@@ -103,7 +102,6 @@ $dataKaryawan = $karyawan->getAllKaryawan();
                                                                 <td>' . ($index + 1) . '</td>
                                                                 <td>' . $karyawan['nik'] . '</td>
                                                                 <td>' . $karyawan['nama'] . '</td>
-                                                                <td>' . $karyawan['jabatan'] . '</td>
                                                                 <td>' . $karyawan['kategori'] . '</td>
                                                                 <td>' . $karyawan['alamat'] . '</td>
                                                                 <td>' . $karyawan['telp'] . '</td>

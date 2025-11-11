@@ -2,9 +2,9 @@
 
 include_once 'config/class-master.php';
 $master = new MasterData();
-// Mengambil daftar jabatan, kategori, dan status karyawan
+// Mengambil daftar  kategori, dan status karyawan
 $jabatanList = $master->getJabatan();
-$kategoriList = $master->getKategori(); // ganti dari getProvinsi()
+$kategoriList = $master->getKategori(); 
 $statusList = $master->getStatus();
 
 if (isset($_GET['status'])) {
@@ -79,7 +79,7 @@ if (isset($_GET['status'])) {
                                         <div class="mb-3">
                                             <label for="jabatan" class="form-label">Jabatan</label>
                                             <select class="form-select" id="jabatan" name="jabatan" required>
-                                                <option value="" selected disabled>Pilih Jabatan</option>
+                                                <option value="" selected disabled>Pilih Kategori</option>
                                                 <?php
                                                 foreach ($jabatanList as $jabatan) {
                                                     echo '<option value="' . $jabatan['id'] . '">' . $jabatan['nama'] . '</option>';
@@ -91,17 +91,6 @@ if (isset($_GET['status'])) {
                                             <label for="alamat" class="form-label">Alamat</label>
                                             <textarea class="form-control" id="alamat" name="alamat" rows="3"
                                                 placeholder="Masukkan Alamat Lengkap Sesuai KTP" required></textarea>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="kategori" class="form-label">Kategori</label>
-                                            <select class="form-select" id="kategori" name="kategori" required>
-                                                <option value="" selected disabled>Pilih Kategori</option>
-                                                <?php
-                                                foreach ($kategoriList as $kategori) {
-                                                    echo '<option value="' . $kategori['id'] . '">' . $kategori['nama'] . '</option>';
-                                                }
-                                                ?>
-                                            </select>
                                         </div>
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email</label>

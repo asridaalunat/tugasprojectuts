@@ -9,18 +9,17 @@ class Karyawan extends Database
     {
         $nik       = $data['nik'];
         $nama      = $data['nama'];
-        $jabatan   = $data['jabatan'];  
+        $kategori   = $data['kategori'];  
         $alamat    = $data['alamat'];
-        $kategori  = $data['kategori']; 
         $email     = $data['email'];
         $telp      = $data['telp'];
         $status    = $data['status'];
 
-        $query = "INSERT INTO tb_karyawan (nik, nama_karyawan, jabatan, alamat, kategori, email, telp, status_karyawan) 
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO tb_karyawan (nik, nama_karyawan, kategori, alamat, email, telp, status_karyawan) 
+                  VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
         if (!$stmt) return false;
-        $stmt->bind_param("ssssssss", $nik, $nama, $jabatan, $alamat, $kategori, $email, $telp, $status);
+        $stmt->bind_param("sssssss", $nik, $nama, $kategori, $alamat, $email, $telp, $status);
         $result = $stmt->execute();
         $stmt->close();
         return $result;
@@ -33,7 +32,6 @@ class Karyawan extends Database
                     id_karyawan AS id,
                     nik,
                     nama_karyawan AS nama,
-                    jabatan,
                     kategori,
                     alamat,
                     email,
@@ -55,7 +53,6 @@ class Karyawan extends Database
                     id_karyawan AS id,
                     nik,
                     nama_karyawan AS nama,
-                    jabatan,
                     kategori,
                     alamat,
                     email,
@@ -79,19 +76,18 @@ class Karyawan extends Database
         $id        = $data['id'];
         $nik       = $data['nik'];
         $nama      = $data['nama'];
-        $jabatan   = $data['jabatan']; 
+        $kategori   = $data['kategori']; 
         $alamat    = $data['alamat'];
-        $kategori  = $data['kategori']; 
         $email     = $data['email'];
         $telp      = $data['telp'];
         $status    = $data['status'];
 
         $query = "UPDATE tb_karyawan SET 
-                    nik = ?, nama_karyawan = ?, jabatan = ?, alamat = ?, kategori = ?, email = ?, telp = ?, status_karyawan = ?
+                    nik = ?, nama_karyawan = ?, kategori = ?, alamat = ?, email = ?, telp = ?, status_karyawan = ?
                   WHERE id_karyawan = ?";
         $stmt = $this->conn->prepare($query);
         if (!$stmt) return false;
-        $stmt->bind_param("ssssssssi", $nik, $nama, $jabatan, $alamat, $kategori, $email, $telp, $status, $id);
+        $stmt->bind_param("sssssssi", $nik, $nama, $kategori, $alamat, $email, $telp, $status, $id);
         $result = $stmt->execute();
         $stmt->close();
         return $result;
@@ -117,7 +113,6 @@ class Karyawan extends Database
                     id_karyawan AS id,
                     nik,
                     nama_karyawan AS nama,
-                    jabatan,
                     kategori,
                     alamat,
                     email,

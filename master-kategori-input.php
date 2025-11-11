@@ -14,7 +14,7 @@ if(isset($_GET['status'])){
 		<?php include 'template/header.php'; ?>
 	</head>
 
-	<body class="layout-fixed fixed-header fixed-footer sidebar-expand-lg sidebar-open bg-body-tertiary">
+	<body class="layout-fixed fixed-header fixed-footer sidebar-expand-lg sidebar-open bg-body-tertiary input-page">
 
 		<div class="app-wrapper">
 

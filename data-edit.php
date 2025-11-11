@@ -89,9 +89,9 @@ if (isset($_GET['status'])) {
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="jabatan" class="form-label">Jabatan</label>
+                                            <label for="jabatan" class="form-label">Kategori</label>
                                             <select class="form-select" id="jabatan" name="jabatan" required>
-                                                <option value="" selected disabled>Pilih Jabatan</option>
+                                                <option value="" selected disabled>Pilih Kategori</option>
                                                 <?php
                                                 foreach ($jabatanList as $jabatan) {
                                                     $selectedJabatan = ($dataKaryawan['jabatan'] == $jabatan['id']) ? "selected" : "";
@@ -106,19 +106,6 @@ if (isset($_GET['status'])) {
                                             <input type="text" class="form-control" id="alamat" name="alamat"
                                                 placeholder="Masukkan Alamat Karyawan" required
                                                 value="<?php echo $dataKaryawan['alamat']; ?>">
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="kategori" class="form-label">Kategori</label>
-                                            <select class="form-select" id="kategori" name="kategori" required>
-                                                <option value="" selected disabled>Pilih Kategori</option>
-                                                <?php
-                                                foreach ($kategoriList as $kategori) {
-                                                    $selectedKategori = ($dataKaryawan['provinsi'] == $kategori['id']) ? "selected" : "";
-                                                    echo '<option value="' . $kategori['id'] . '" ' . $selectedKategori . '>' . $kategori['nama'] . '</option>';
-                                                }
-                                                ?>
-                                            </select>
                                         </div>
 
                                         <div class="mb-3">
